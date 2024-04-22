@@ -48,7 +48,7 @@ function Home() {
 
             </div>
             : <div>
-              <h1 className='text-2xl font-semibold mt-8 ml-8'>Users</h1>
+              {!loading && <h1 className='text-2xl font-semibold mt-8 ml-8 text-white'>Users</h1>}
               <div className='flex'>
                 <div className={`${clicked ? "md:w-1/2 w-full" : "w-full"} `}>
 
