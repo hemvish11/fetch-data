@@ -5,10 +5,10 @@ import { RingLoader } from 'react-spinners';
 
 function Home() {
 
-  const [personData, setPersonData] = useState([]);
+  const [peopleData, setPeopleData] = useState([]);
   const [currUserData, setCurrUserData] = useState();
   const [clicked, setClicked] = useState(false);
-  const [noDataFetched, setNoDataSetched] = useState(false);
+  const [noDataFetched, setNoDataFetched] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const doFetching = async () => {
@@ -16,14 +16,15 @@ function Home() {
       let data = await fetch("https://602e7c2c4410730017c50b9d.mockapi.io/users");
       data = await data.json();
       console.log(data);
-      setPersonData(data);
+      setPeopleData(data);
       setLoading(false);
     } catch (error) {
-      setNoDataSetched(true);
+      setNoDataFetched(true);
       throw (error);
     }
   }
-
+  //#1. call back function of useEffect hook cannot be async function
+  // but we can call that function inside the CB function of useEffect hook
   useEffect(() => {
     doFetching();
   }, []);
@@ -38,21 +39,23 @@ function Home() {
           </div>
 
           :
-
+          
           (loading ?
+          
             <div className='flex items-center justify-center w-full h-screen'>
+            {/* #2. We can use react-spinners library to use spinners while fetching data */}
               <RingLoader
                 color="#36d7b7"
                 size={150}
               />
-
             </div>
-            : <div>
-              {!loading && <h1 className='text-2xl font-semibold mt-8 ml-8 text-white'>Users</h1>}
+            :
+            <div>
+              <h1 className='text-2xl font-semibold mt-8 ml-8 text-white'>Users</h1>
               <div className='flex'>
                 <div className={`${clicked ? "md:w-1/2 w-full" : "w-full"} `}>
 
-                  {personData.map((item, index) => {
+                  {peopleData.map((item, index) => {
                     return (
                       <div key={index} className='m-4 border p-4 hover:bg-green-300 cursor-pointer rounded-lg bg-gray-200'
                         onClick={() => {
