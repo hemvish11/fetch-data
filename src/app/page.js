@@ -39,11 +39,11 @@ function Home() {
           </div>
 
           :
-          
+
           (loading ?
-          
+
             <div className='flex items-center justify-center w-full h-screen'>
-            {/* #2. We can use react-spinners library to use spinners while fetching data */}
+              {/* #2. We can use react-spinners library to use spinners while fetching data */}
               <RingLoader
                 color="#36d7b7"
                 size={150}
@@ -77,7 +77,7 @@ function Home() {
                   })}
                 </div>
 
-                <div className={`${clicked ? "md:w-1/2 fixed w-full top-2 left-2 right-2 md:left-auto md:right-2 md:top-10 border p-4 rounded-lg" : "w-0"} bg-white`}>
+                <div className={`${clicked ? "md:w-1/2 fixed top-2 left-4 right-4 md:left-auto md:right-2 md:top-10 border p-4 rounded-lg" : "w-0"} bg-white`}>
 
                   {clicked &&
                     <div >
