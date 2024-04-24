@@ -1,7 +1,8 @@
 "use client";
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { RingLoader } from 'react-spinners';
+import CloseIcon from '@mui/icons-material/Close';
 
 function Home() {
 
@@ -77,15 +78,19 @@ function Home() {
                   })}
                 </div>
 
-                <div className={`${clicked ? "md:w-1/2 fixed top-2 left-4 right-4 md:left-auto md:right-2 md:top-10 border p-4 rounded-lg" : "w-0"} bg-white`}>
+                <div className={`${clicked ? "md:w-1/2 fixed top-2 left-4 right-4 md:left-auto md:right-2 md:top-10 border p-4 rounded-lg shadow-lg" : "w-0"} bg-white`}>
 
                   {clicked &&
-                    <div >
+                    <div className='relative'>
                       <div className='flex flex-col justify-center items-center'>
                         <Image height={100} width={100} src={currUserData.avatar} alt={`${currUserData.profile.firstName}-pic`} className='rounded-full' />
                         <h1 className='font-semibold'>{currUserData.profile.firstName}</h1>
-
                       </div>
+
+                      <div
+                        onClick={() => setClicked(false)}
+                        className='absolute top-0 right-0 cursor-pointer'><CloseIcon style={{ width: '40px', height: '40px' }} /></div>
+
                       <div className='flex flex-col justify-start items-start'>
                         <p className='text-gray-900 font-semibold'>First Name: <span className='text-gray-700'>{currUserData.profile.firstName} </span></p>
                         <p className='text-gray-900 font-semibold'>Last Name: <span className='text-gray-700'>{currUserData.profile.lastName}</span></p>
